@@ -82,7 +82,7 @@ class CoursePlanDetailController extends Controller
 
         $response = new stdClass;
         $response->status = '200';
-        $response->message = 'Respon sukses entri data';
+        $response->message = 'Sukses entri data';
         $response->id = $coursePlanDetail->id;
         $response->datetime = Carbon::now();
 
@@ -106,6 +106,27 @@ class CoursePlanDetailController extends Controller
         $coursePlanDetail->student_experience = $request->student_exp;
         $coursePlanDetail->save();
 
+        $coursePlanDetailOutcomes = CoursePlanDetailOutcome::where('course_plan_detail_id', $coursePlanDetail->id)
+                                                            ->get();
+
+        foreach($coursePlanDetailOutcomes as $coursePlanDetailOutcome){
+            $coursePlanDetailOutcome->delete();
+        }
+
+        $coursePlanDetailAssessments = CoursePlanDetailAssessment::where('course_plan_detail_id', $coursePlanDetail->id)
+                                                            ->get();
+
+        foreach($coursePlanDetailAssessments as $coursePlanDetailAssessment){
+            $coursePlanDetailAssessment->delete();
+        }
+
+        $coursePlanDetailRefs = CoursePlanDetailRef::where('course_plan_detail_id', $coursePlanDetail->id)
+                                                            ->get();
+
+        foreach($coursePlanDetailRefs as $coursePlanDetailRef){
+            $coursePlanDetailRef->delete();
+        }
+
         foreach($request->los as $lo){
             $coursePlanDetailOutcome = new CoursePlanDetailOutcome;
             $coursePlanDetailOutcome->course_plan_detail_id = $coursePlanDetail->id;
@@ -122,7 +143,7 @@ class CoursePlanDetailController extends Controller
         }
 
         foreach($request->refs as $ref){
-            $coursePlanDetailRef = new coursePlanDetailRef;
+            $coursePlanDetailRef = new CoursePlanDetailRef;
             $coursePlanDetailRef->course_plan_detail_id = $coursePlanDetail->id;
             $coursePlanDetailRef->course_plan_reference_id = $ref['id'];
             $coursePlanDetailRef->category = $ref['category'];
@@ -131,7 +152,7 @@ class CoursePlanDetailController extends Controller
 
         $response = new stdClass;
         $response->status = '200';
-        $response->message = 'Respon sukses entri data';
+        $response->message = 'Sukses update data';
         $response->id = $coursePlanDetail->id;
         $response->datetime = Carbon::now();
 
@@ -144,9 +165,9 @@ class CoursePlanDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($rpsId, $assessmentId)
+    public function destroy($rpsId, $sessionId)
     {
-        $data = CoursePlanAssessments::find($assessmentId);
+        $data = CoursePlanDetail::find($sessionId);
         $data->delete();
 
         $response = new stdClass;
