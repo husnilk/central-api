@@ -33,8 +33,8 @@ Route::get('/rps/{rpsId}', [ListCoursePlanController::class, 'show']);
 //Rps
 Route::get('/bo/rps/', [CoursePlanController::class, 'index']);
 Route::post('/bo/rps/', [CoursePlanController::class, 'store']);
+Route::get('/bo/rps/{rpsId}/', [ListCoursePlanController::class, 'show']);
 Route::put('/bo/rps/{rpsId}/', [CoursePlanController::class, 'update']);
-Route::delete('/bo/rps/{rpsId}/', [CoursePlanController::class, 'destroy']);
 
 //CPMK
 Route::get('/bo/rps/{rpsId}/cpmk', [CourseLoController::class, 'getData']);
