@@ -22,7 +22,7 @@ class CoursePlanController extends Controller
     {
         $data = CoursePlan::select('course_plans.id', 'course_plans.code', 'course_plans.name', 'course_plans.credit', 'course_plans.semester', 'course_plans.rev', 'course_plans.created_at')
                                 ->join('course_plan_lecturers', 'course_plans.id', 'course_plan_lecturers.lecturer_id')
-                                ->where('course_plan_lecturers.lecturer_id', 1)
+                                ->where('course_plan_lecturers.lecturer_id', Auth::user()->id)
                                 ->get();
 
         foreach($data as $include){
@@ -51,8 +51,8 @@ class CoursePlanController extends Controller
 
         $data = new CoursePlanLecturer;
         $data->course_plan_id = $request->course_id;
-        $data->lecturer_id = 1;
-        $data->creator = 1;
+        $data->lecturer_id = Auth::user()->id;
+        $data->creator = Auth::user()->id;
         $data->save();
 
         $response = new stdClass;
