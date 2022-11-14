@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\UploadFileTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Staff extends Model
 {
-    use HasFactory, UploadFileTrait;
+    use HasFactory;
 
     public static $validation_rules = [
         'email' => 'required',
