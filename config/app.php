@@ -197,6 +197,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        
+        // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
     ],
 
@@ -213,6 +215,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
+        // 'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
     ])->toArray(),
 
 ];

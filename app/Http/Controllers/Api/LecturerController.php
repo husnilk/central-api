@@ -32,7 +32,7 @@ class LecturerController extends Controller
         $lecturer = new CoursePlanLecturer;
         $lecturer->course_plan_id = $rpsId;
         $lecturer->lecturer_id = $request->lecturer_id;
-        $lecturer->creator = $request->creator;
+        $lecturer->creator = 0;
         $lecturer->save();
 
         $response = new stdClass;

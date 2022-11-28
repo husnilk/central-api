@@ -29,51 +29,14 @@ class CourseLoController extends Controller
             'code' => ['required', 'string'],
         ]);
 
-        $courselo = new CourseLo;
-        $courselo->name = $request->name;
-        $courselo->code = $request->code;
-        $courselo->parent_id = $request->parent_id;
-        $courselo->type = $request->type;
-        $courselo->course_plan_id = $rpsId;
-        $courselo->save();
-
-        $data = new stdClass;
-        $data->status = '200';
-        $data->message = 'Success';
-        $data->id = $courselo->id;
-        $data->datetime = Carbon::now();
-
-        return response()->json($data);
-    }
-
-    public function update(Request $request,$rpsId, $cpmkId)
-    {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'code' => ['required', 'string'],
-        ]);
-
-        $courselo = CourseLo::find($cpmkId);
-        $courselo->name = $request->name;
-        $courselo->code = $request->code;
-        $courselo->parent_id = $request->parent_id;
-        $courselo->type = $request->type;
-        $courselo->course_plan_id = $rpsId;
-        $courselo->save();
-
-        $data = new stdClass;
-        $data->status = '200';
-        $data->message = 'Success';
-        $data->id = $courselo->id;
-        $data->datetime = Carbon::now();
-
-        return response()->json($data);
-    }
-
-    public function destroy($rpsId, $cpmkId)
-    {
-        $courselo = CourseLo::find($cpmkId);
-        $courselo->delete();
+        foreach($request->clo_ids as $clo_ids){
+            $courselo = new CourseLo;
+            $courselo->name = $request->name;
+            $courselo->code = $request->code;
+            $courselo->parent_id = $request->clo_ids;
+            $courselo->course_plan_id = $rpsId;
+            $courselo->save();
+        }
 
         $data = new stdClass;
         $data->status = '200';
