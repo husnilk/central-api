@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CoursePlanAssessmentController;
 use App\Http\Controllers\Api\CoursePlanDetailController;
 use App\Http\Controllers\Api\LecturerController;
 use App\Http\Controllers\Api\CoursePlanController;
+use App\Http\Controllers\Api\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::get('/rps', [ListCoursePlanController::class, 'index']);
 Route::post('/rps', [ListCoursePlanController::class, 'search']);
 Route::get('/rps/{rpsId}', [ListCoursePlanController::class, 'show']);
+Route::post('/rps/{rpsId}/export', [ListCoursePlanController::class, 'export']);
 
 //Rps
 Route::get('/bo/rps/', [CoursePlanController::class, 'index']);
@@ -64,5 +66,6 @@ Route::delete('/bo/rps/{rpsId}/session/{sessionId}', [CoursePlanDetailController
 Route::get('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'index']);
 Route::post('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'store']);
 Route::delete('/bo/rps/{rpsId}/lecturers/{lecturersId}', [LecturerController::class, 'destroy']);
+
 
 

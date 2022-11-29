@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CoursePlan;
 use \stdClass;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ListCoursePlanController extends Controller
 {
@@ -64,5 +65,24 @@ class ListCoursePlanController extends Controller
         unset($data->created_by);
 
         return response()->json($data);
+    }
+
+    public function export($rpsId)
+    {
+        $data = CoursePlan::find($rpsId);
+        $coursePlans = CoursePlan::select('id', 'code', 'name', 'credit', 'semester', 'rev', 'created_at')
+                                    ->where('id', $rpsId)->first();
+
+        foreach($coursePlans as $coursePlan){
+            $coursePlan->editable = false;
+        }
+
+        $data = new stdClass;
+        $data->count = $coursePlans->count();
+        $data->datetime = Carbon::now();
+        $data->rps = $coursePlans;
+
+        $pdf = Pdf::loadView('rps.pdf', $data);
+        return $pdf->download('rps.pdf');
     }
 }
