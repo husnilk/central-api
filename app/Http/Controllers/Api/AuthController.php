@@ -13,19 +13,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
 
-        //$token = Auth::attempt($credentials);
-        $token = auth()->guard('api')->attempt($credentials);
-        if (!$token) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         $user = Auth::user();
@@ -37,7 +29,6 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
-
     }
 
     public function register(Request $request){
@@ -53,11 +44,41 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::login($user);
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
             'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        $token = auth()->refresh();
+
+        return response()->json([
+            'status' => 'success',
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',

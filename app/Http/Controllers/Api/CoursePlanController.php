@@ -28,6 +28,7 @@ class CoursePlanController extends Controller
         foreach($data as $include){
             $include->editable = false;
         }
+        dd($data);
 
         $response = new stdClass;
         $response->count = $data->count();

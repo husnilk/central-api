@@ -11,6 +11,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ListCoursePlanController extends Controller
 {
+    
+    
     public function index()
     {
         $coursePlans = CoursePlan::select('id', 'code', 'name', 'credit', 'semester', 'rev', 'created_at')->get();
