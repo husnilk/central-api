@@ -85,4 +85,11 @@ class AuthController extends Controller
             ]
         ]);
     }
+
+    public function forbidden(){
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Not Authenticated'
+        ], 401);
+    }
 }

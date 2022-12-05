@@ -9,7 +9,6 @@ use App\Http\Controllers\Api\CoursePlanAssessmentController;
 use App\Http\Controllers\Api\CoursePlanDetailController;
 use App\Http\Controllers\Api\LecturerController;
 use App\Http\Controllers\Api\CoursePlanController;
-use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\AuthController;
 
 /*
@@ -29,12 +28,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/forbidden', [AuthController::class, 'forbidden'])->name('api.forbidden');
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
     //Auth
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     //List Rps
     Route::get('/rps', [ListCoursePlanController::class, 'index']);
     Route::post('/rps', [ListCoursePlanController::class, 'search']);
@@ -74,7 +74,9 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
     //Lecturer
     Route::get('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'index']);
     Route::post('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'store']);
-    Route::delete('/bo/rps/{rpsId}/lecturers/{lecturersId}', [LecturerController::class, 'destroy']);    
-    
+    Route::delete('/bo/rps/{rpsId}/lecturers/{lecturersId}', [LecturerController::class, 'destroy']);
+
 });
 
+require __DIR__.'/api/ta.php';
+require __DIR__.'/api/kp.php';
