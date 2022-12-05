@@ -28,6 +28,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/me/update', [AuthController::class, 'update']);
+Route::get('/me', [AuthController::class, 'me']);
+Route::post('/password', [AuthController::class, 'password']);
 Route::get('/forbidden', [AuthController::class, 'forbidden'])->name('api.forbidden');
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
