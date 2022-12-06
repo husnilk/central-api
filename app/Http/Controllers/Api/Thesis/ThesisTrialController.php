@@ -26,7 +26,7 @@ class ThesisTrialController extends Controller
         return response()->json($trial);
     }
 
-    public function store(Request $request)
+    public function submit(Request $request)
     {
         $thesis = Thesis::where('student_id', auth()->id())
             ->where('id', request('thesis_id'))

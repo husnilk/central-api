@@ -50,13 +50,5 @@ class ThesisSubmissionController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        $thesis = Thesis::where('student_id', auth()->id())
-            ->where('id', $id)
-            ->first();
-
-        return response()->json($thesis);
-    }
 
 }
