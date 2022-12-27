@@ -17,8 +17,6 @@ class ThesisListController extends Controller
             'count' => $seminars->count(),
             'seminars' => $seminars
         ]);
-
-
     }
 
     public function trials()

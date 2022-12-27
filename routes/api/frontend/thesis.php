@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\Thesis\ThesisProposalController;
 use App\Http\Controllers\Api\Thesis\ThesisSeminarAudienceController;
 use App\Http\Controllers\Api\Thesis\ThesisSeminarController;
 use App\Http\Controllers\Api\Thesis\ThesisSubmissionController;
+use App\Http\Controllers\Api\Thesis\ThesisSupervisorSeminarController;
+use App\Http\Controllers\Api\Thesis\ThesisSupervisorTrialController;
 use App\Http\Controllers\Api\Thesis\ThesisTrialController;
 use App\Http\Controllers\Api\Thesis\ThesisAdvisorCancellationController;
 use App\Http\Controllers\Api\Thesis\ThesisAdvisorController;
@@ -46,14 +48,18 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
         Route::resource('submissions', ThesisSupervisorSubmissionController::class);
         Route::post('submissions/{thesis}/accept', [ThesisSupervisorSubmissionController::class, 'accept'])->name('submissions.accept');
         Route::post('submissions/{thesis}/reject', [ThesisSupervisorSubmissionController::class, 'reject'])->name('submissions.reject');
-        Route::resource('advisor-cancellation', ThesisAdvisorCancellationController::class)->only(['create', 'store']);
+        Route::resource('advisor-cancellation', ThesisAdvisorCancellationController::class)->only(['create', 'update']);
         Route::resource('advisors.logbooks', ThesisAdvisorLogbookController::class)->only(['show', 'edit', 'update']);
+        Route::post('advisors-logbooks/{thesis}/accept', [ThesisAdvisorLogbookController::class, 'accept'])->name('advisors.logbook.accept');
+        Route::post('advisors-logbooks/{thesis}/reject', [ThesisAdvisorLogbookController::class, 'reject'])->name('advisors.logbook.reject');
 
         Route::resource('proposal-grades', ThesisProposalGradeController::class)->only(['index', 'show', 'edit', 'update']);
 
+        Route::resource('advisors.seminars', ThesisSupervisorSeminarController::class);
         Route::resource('reviewer-submissions', ThesisReviewerSubmissionController::class)->only(['index', 'show', 'update', 'destroy']);
         Route::resource('reviewer-scores', ThesisReviewerScoreController::class)->only(['edit', 'update']);
 
+        Route::resource('advisors.trials', ThesisSupervisorTrialController::class);
         Route::resource('examiner-submissions', ThesisExaminerSubmissionController::class)->only(['show', 'update', 'destroy']);
         Route::resource('examiner-scores', ThesisExaminerScoreController::class)->only(['edit', 'update']);
 

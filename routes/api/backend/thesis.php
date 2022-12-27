@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarResultController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarReviewerController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarSubmissionController;
+use App\Http\Controllers\Api\Thesis\Backend\ThesisSubmissionController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisSupervisorController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisTopicController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialAcceptanceController;
@@ -22,6 +23,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'backend.'], 
 
     Route::resource('thesis-topics', ThesisTopicController::class);
 
+    Route::resource('thesis-submissions', ThesisSubmissionController::class);
     Route::resource('theses', ThesisController::class);
     //Mahasiswa
     Route::resource('theses.supervisors', ThesisSupervisorController::class)->only(['create', 'store', 'destroy']);
