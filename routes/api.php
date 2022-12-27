@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ListCoursePlanController;
@@ -29,11 +28,10 @@ use App\Http\Controllers\Api\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/me/update', [AuthController::class, 'update']);
+Route::get('/me', [AuthController::class, 'me']);
+Route::post('/password', [AuthController::class, 'password']);
 Route::get('/forbidden', [AuthController::class, 'forbidden'])->name('api.forbidden');
-
-Route::get('/me', [ProfileController::class, 'me']);
-Route::post('/me/update', [ProfileController::class, 'update']);
-Route::post('/password', [ProfileController::class, 'password']);
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
     //Auth
@@ -83,5 +81,8 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
 
 });
 
-require __DIR__ . '/api/thesis.php';
-require __DIR__.'/api/kp.php';
+require __DIR__ . '/api/frontend/thesis.php';
+require __DIR__ . '/api/frontend/intern.php';
+
+require __DIR__ . '/api/backend/thesis.php';
+require __DIR__ . '/api/backend/intern.php';
