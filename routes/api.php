@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ListCoursePlanController;
-use App\Http\Controllers\Api\CourseLoController;
-use App\Http\Controllers\Api\RefController;
-use App\Http\Controllers\Api\CoursePlanAssessmentController;
-use App\Http\Controllers\Api\CoursePlanDetailController;
-use App\Http\Controllers\Api\LecturerController;
-use App\Http\Controllers\Api\CoursePlanController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Curriculum\CourseLoController;
+use App\Http\Controllers\Api\Curriculum\CoursePlanAssessmentController;
+use App\Http\Controllers\Api\Curriculum\CoursePlanController;
+use App\Http\Controllers\Api\Curriculum\CoursePlanDetailController;
+use App\Http\Controllers\Api\Curriculum\LecturerController;
+use App\Http\Controllers\Api\Curriculum\ListCoursePlanController;
+use App\Http\Controllers\Api\Curriculum\RefController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

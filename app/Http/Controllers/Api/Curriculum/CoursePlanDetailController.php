@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Curriculum;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\CoursePlanDetail;
 use App\Models\CoursePlanAssessment;
-use App\Models\CoursePlanReference;
-use App\Models\CoursePlanDetailOutcome;
+use App\Models\CoursePlanDetail;
 use App\Models\CoursePlanDetailAssessment;
+use App\Models\CoursePlanDetailOutcome;
 use App\Models\CoursePlanDetailRef;
-use \stdClass;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
+use stdClass;
 
 class CoursePlanDetailController extends Controller
 {
