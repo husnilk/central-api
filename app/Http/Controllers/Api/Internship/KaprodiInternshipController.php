@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Internship;
 use App\Models\InternshipLogbook;
 use App\Models\InternshipProposal;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KaprodiInternshipController extends Controller
 {
     public function listusulankp()
     {
-        $proposals = InternshipProposal::select('internship_proposals.id', 'internship_agencies.name', 'internship_proposals.start_at', 'internship_proposals.end_at', DB::raw("'count'('internships.id') as num"))
+        $proposals = InternshipProposal::select('internship_proposals.id', 'internship_agencies.name', 'internship_proposals.start_at', 'internship_proposals.end_at', DB::raw("count(internships.id) as num"))
             ->leftJoin('internships', 'internship_proposals.id', '=', 'internships.proposal_id')
             ->leftJoin('internship_agencies', 'internship_proposals.agency_id', '=', 'internship_agencies.id')
             ->where('internship_proposals.status', InternshipProposal::STATUS_SUBMITTED)
@@ -45,8 +47,8 @@ class KaprodiInternshipController extends Controller
 
     public function detailusulan($proposal_id)
     {
-        $proposals = DB::table('internship_proposals')
-            ->select('internship_proposals.id', 'internship_agencies.name', 'internship_proposals.status', 'internship_proposals.start_at', 'internship_proposals.end_at', DB::raw("'count'('internships.id') as jumlah"))
+        $proposals = InternshipProposal::with('students')
+            ->select('internship_proposals.id', 'internship_agencies.name', 'internship_proposals.status', 'internship_proposals.start_at', 'internship_proposals.end_at', DB::raw("count(internships.id) as jumlah"))
             ->leftJoin('internship_agencies', 'internship_proposals.agency_id', '=', 'internship_agencies.id')
             ->leftJoin('internships', 'internship_proposals.id', '=', 'internships.proposal_id')
             ->groupBy('internship_proposals.id')
@@ -66,7 +68,7 @@ class KaprodiInternshipController extends Controller
             ->leftJoin('students', 'internships.student_id', '=', 'students.id')
             ->leftJoin('internship_proposals', 'internships.proposal_id', '=', 'internship_proposals.id')
             ->leftJoin('internship_agencies', 'internship_proposals.agency_id', '=', 'internship_agencies.id')
-            ->where('internship_logbooks.date', '=', DB::raw('date'(now())))
+            ->where('internship_logbooks.date', '=', DB::raw('date(now())'))
             ->get();
 
         $res = new \stdClass();
@@ -93,6 +95,8 @@ class KaprodiInternshipController extends Controller
         $res->status = 'success';
         $res->count = $internships->count();
         $res->internships = $internships;
+
+        return response()->json($res);
     }
 
     public function pembatalankp(Request $request, $internship_id)

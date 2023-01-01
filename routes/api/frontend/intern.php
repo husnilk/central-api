@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Http\Controllers\Api\Internship\InternshipAgencyController;
+use App\Http\Controllers\Api\Internship\KaprodiInternshipController;
 use App\Http\Controllers\Api\Internship\LecturerInternshipController;
 use App\Http\Controllers\Api\Internship\MyInternshipAudienceController;
 use App\Http\Controllers\Api\Internship\MyInternshipController;
@@ -31,5 +33,20 @@ Route::group(['middleware' => ['auth','api']], function(){
     Route::patch('internship-students/{internship_id}/approve-audiences', [LecturerInternshipController::class, 'approvepeserta']);
     Route::patch('internship-students/{internship_id}/reject-audiences', [LecturerInternshipController::class, 'rejectpeserta']);
     Route::patch('internship-students/{internship_id}/logbook/{logbook_id}', [LecturerInternshipController::class, 'updatelogbook']);
+
+    //Kaprodi
+    Route::get('internship-agencies', [InternshipAgencyController::class, 'index']);
+    Route::patch('internship-agencies/{agency_id}', [InternshipAgencyController::class, 'accept']);
+
+    Route::patch('internship-cancellations/{internship_id}', [KaprodiInternshipController::class, 'pembatalankp']); //Belum bisa : 404
+    Route::patch('internship-supervisors/{internship_id}', [KaprodiInternshipController::class, 'penunjukanpembimbing']); //Belum bisa : 404
+    Route::patch('internship-grade/{internship_id}/approval', [KaprodiInternshipController::class, 'persetujuannilaikp']);
+
+    Route::get('internship-proposals', [KaprodiInternshipController::class, 'listusulankp']);
+    Route::get('internship-proposals/{proposal_id}', [KaprodiInternshipController::class, 'detailusulan']);
+    Route::get('internships', [KaprodiInternshipController::class, 'listmahasiswakp']);
+    Route::get('daily-logbooks', [KaprodiInternshipController::class, 'listdailylogbook']);
+    Route::get('finished-internships', [KaprodiInternshipController::class, 'listmahasiswaselesaikp']);
+
 
 });

@@ -129,7 +129,7 @@ class LecturerInternshipController extends Controller
         $audience = InternshipSeminarAudience::where('internship_id', $internship_id)
             ->where('student_id', $request->student_id)
             ->first();
-        
+
         $res = new \stdClass();
         if($audience == null){
             $res->status = 'failed';

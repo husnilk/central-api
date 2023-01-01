@@ -1,0 +1,1118 @@
+{
+	"info": {
+		"_postman_id": "9917fa79-223e-437a-8d8a-c9b2b8d4cf30",
+		"name": "Central",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "198201182008121002",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/me",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "newmail@server.com",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Nama Baruku",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/me/update",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"me",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "old_password",
+									"value": "123",
+									"type": "default"
+								},
+								{
+									"key": "new_password",
+									"value": "1234",
+									"type": "default"
+								},
+								{
+									"key": "confirm_password",
+									"value": "1234",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/password",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TA",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "KP",
+			"item": [
+				{
+					"name": "Logbook",
+					"item": [
+						{
+							"name": "Tambah Logbook",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "activities",
+											"value": "Pekerjaan hari ini",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/my-internship/1/logbook",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"my-internship",
+										"1",
+										"logbook"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Logbook",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/api/my-internship/1/logbook",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"my-internship",
+										"1",
+										"logbook"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Logbook",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/api/my-internship/1/logbook/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"my-internship",
+										"1",
+										"logbook",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Logbook (Mahasiswa)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "activities",
+											"value": "Update aktifitas hari ini",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/my-internship/1/logbook/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"my-internship",
+										"1",
+										"logbook",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Logbook Mahasiswa (Dosen)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "status",
+											"value": "1",
+											"type": "default"
+										},
+										{
+											"key": "note",
+											"value": "Semangat!",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/internship-students/1/logbook/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"internship-students",
+										"1",
+										"logbook",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "List KP (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/my-internship",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail KP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/my-internship/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pengajuan KP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "agency_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "start_at",
+									"value": "2022-12-12",
+									"type": "default"
+								},
+								{
+									"key": "end_at",
+									"value": "2023-01-01",
+									"type": "default"
+								},
+								{
+									"key": "purpose",
+									"value": "Untuk memenuhi tujuan KP",
+									"type": "default"
+								},
+								{
+									"key": "title ",
+									"value": "KP di LPTIK",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/my-internship-submissions",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship-submissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lapor Selesai KP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "end_date",
+									"value": "2021-01-01",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/my-internship/1/finish-statement",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship",
+								"1",
+								"finish-statement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lapor Balasan KP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "start_date",
+									"value": "2022-12-01",
+									"type": "default"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-01-01",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/my-internship/1/ready-statement",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship",
+								"1",
+								"ready-statement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Laporan Akhir",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "start_date",
+									"value": "2022-12-01",
+									"type": "default"
+								},
+								{
+									"key": "end_date",
+									"value": "2023-01-01",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/my-internship/1/final_report",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship",
+								"1",
+								"final_report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Seminar KP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Pembuatan Aplikasi X di perusahaan Y",
+									"type": "default"
+								},
+								{
+									"key": "seminar_date",
+									"value": "2023-01-01",
+									"type": "default"
+								},
+								{
+									"key": "seminar_room_id",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/my-internship/1/input_seminar",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship",
+								"1",
+								"input_seminar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tambah Peserta Seminar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student_id",
+									"value": "451",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/my-internship/1/audiences",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"my-internship",
+								"1",
+								"audiences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Informasi Seminar KP Saat Ini",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/info-seminar-internship",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"info-seminar-internship"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Isi Absen Seminar KP",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/attend-seminar-internship/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"attend-seminar-internship",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Mahasiswa Bimbingan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/internship-students",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Nilai KP (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grade",
+									"value": "A",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-students/1/grade",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students",
+								"1",
+								"grade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pembatalan KP (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "reason",
+									"value": "Mahasiswanya hilang",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-students/1/cancellation",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students",
+								"1",
+								"cancellation"
+							],
+							"query": [
+								{
+									"key": "reason",
+									"value": "Anaknya menghilang",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Seminar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "reason",
+									"value": "Mahasiswanya hilang",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-students/1/seminar",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students",
+								"1",
+								"seminar"
+							],
+							"query": [
+								{
+									"key": "reason",
+									"value": "Anaknya menghilang",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Berita Acara Seminar (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "news_event",
+									"value": "Perbaiki laporan dan use case diagram",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-students/1/seminar",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students",
+								"1",
+								"seminar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Kehadiran Peserta Seminar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student_id",
+									"value": "321",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-students/1/approve-audiences",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students",
+								"1",
+								"approve-audiences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RejectKehadiran Peserta Seminar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student_id",
+									"value": "321",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-students/1/reject-audiences",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-students",
+								"1",
+								"reject-audiences"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
