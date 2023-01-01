@@ -37,11 +37,11 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
     Route::resource('theses.proposals', ThesisProposalController::class);
     Route::resource('theses.logbooks', ThesisLogbookController::class)->except(['edit', 'create']);
     Route::resource('theses.seminars', ThesisSeminarController::class)->except(['edit', 'create']);
-    Route::resource('theses.trials', ThesisTrialController::class)->only(['show', 'store']);
+    Route::resource('theses.trials', ThesisTrialController::class)->only(['show', 'store', 'index']);
 
     Route::group(['prefix' => 'thesis', 'as' => 'thesis.'], function () {
         /** MAHASISWA */
-        Route::resource('seminars.audiences', ThesisSeminarAudienceController::class)->only(['create', 'store', 'destroy']);
+        Route::resource('seminars.audiences', ThesisSeminarAudienceController::class)->only(['create', 'store', 'destroy', 'index']);
 
         /** DOSEN */
         Route::resource('advisors', ThesisAdvisorController::class)->except(['create', 'store']); //Tadi diubah

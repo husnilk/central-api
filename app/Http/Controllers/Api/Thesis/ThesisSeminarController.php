@@ -11,33 +11,33 @@ use Illuminate\Http\Request;
 
 class ThesisSeminarController extends Controller
 {
-    public function show($id)
+    public function index($thesis_id)
     {
-        $theses = Thesis::where('student_id', auth()->id())
-            ->get()
-            ->pluck('id')
-            ->toArray();
 
-        $seminar = ThesisSeminar::where('id', $id)
-            ->whereIn('thesis_id', $theses)
+        $seminar = ThesisSeminar::with('reviewers')
+            ->where('thesis_id', $thesis_id)
             ->first();
 
-        $peserta = ThesisSeminarAudience::where('seminar_id', $seminar->id)
-            ->get();
-
-        $seminar->put('peserta', $peserta);
-
+        if($seminar != null)
+        {
+            $peserta = ThesisSeminarAudience::where('thesis_seminar_id', $seminar->id)
+                ->get();
+            $seminar->peserta = $peserta;
+            return response()->json($seminar);
+        }
+        $seminar = new ThesisSeminar();
+        $seminar->thesis_id = $thesis_id;
         return response()->json($seminar);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $thesis_id)
     {
-        $thesis = Thesis::where('student_id', auth()->id())
-            ->where('id', request('thesis_id'))
-            ->first();
+//        $thesis = Thesis::where('student_id', auth()->id())
+//            ->where('id', request('thesis_id'))
+//            ->first();
 
         $seminar = new ThesisSeminar();
-        $seminar->thesis_id = $thesis->id;
+        $seminar->thesis_id = $thesis_id;
         $seminar->registered_at = Carbon::now();
         $seminar->status = ThesisSeminar::STATUS_SUBMITTED;
         if ($seminar->save()) {

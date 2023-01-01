@@ -12,28 +12,26 @@ use Illuminate\Http\Request;
 
 class ThesisTrialController extends Controller
 {
-    public function show($id)
+    public function index($thesis_id)
     {
-        $theses = Thesis::where('student_id', auth()->id())
-            ->get()
-            ->pluck('id')
-            ->toArray();
 
-        $trial = ThesisTrial::where('id', $id)
-            ->whereIn('thesis_id', $theses)
+        $trial = ThesisTrial::with('examiners')
+            ->where('thesis_id', $thesis_id)
             ->first();
 
+        if ($trial != null) {
+            return response()->json($trial);
+        }
+        $trial = new ThesisTrial();
+        $trial->thesis_id = $thesis_id;
         return response()->json($trial);
     }
 
-    public function submit(Request $request)
+    public function store(Request $request, $thesis_id)
     {
-        $thesis = Thesis::where('student_id', auth()->id())
-            ->where('id', request('thesis_id'))
-            ->first();
-
         $trial = new ThesisTrial();
-        $trial->thesis_id = $thesis->id;
+        $trial->thesis_id = $thesis_id;
+        $trial->thesis_rubric_id = 1;
         $trial->registered_at = Carbon::now();
         $trial->status = ThesisSeminar::STATUS_SUBMITTED;
         if ($trial->save()) {

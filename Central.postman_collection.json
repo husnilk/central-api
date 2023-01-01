@@ -18,12 +18,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "198201182008121002",
+									"value": "1511522001",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "1234",
+									"value": "123",
 									"type": "default"
 								}
 							]
@@ -199,26 +199,1069 @@
 			"name": "TA",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "List Seminar TA (Mahasiswa)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/list/seminars",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"list",
+								"seminars"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "List Sidang TA (Mahasiswa)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/list/trials",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"list",
+								"trials"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "List TA (Mahasiswa)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/theses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pendaftaran TA (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Pembangunan Sistem X untuk Perusahan Y",
+									"type": "default"
+								},
+								{
+									"key": "abstract",
+									"value": "Bla.. bla.. bla..",
+									"type": "default"
+								},
+								{
+									"key": "lecturer_id",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "position",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/theses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Logbook TA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/theses/309/logbooks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"309",
+								"logbooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tambah Logbook TA (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "supervisor_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "date",
+									"value": "2023-01-02",
+									"type": "default"
+								},
+								{
+									"key": "progress",
+									"value": "begini begitu",
+									"type": "default"
+								},
+								{
+									"key": "problem",
+									"value": "moody",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/theses/309/logbooks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"309",
+								"logbooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Logbook TA (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "2023-01-02",
+									"type": "default"
+								},
+								{
+									"key": "progress",
+									"value": "sudah sampai begini",
+									"type": "default"
+								},
+								{
+									"key": "problem",
+									"value": "Ini problemnya",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/theses/309/logbooks/398",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"309",
+								"logbooks",
+								"398"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Logbook TA (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/200/logbooks/399",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"200",
+								"logbooks",
+								"399"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Seminar Hasil (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/309/seminars",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"309",
+								"seminars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pengajuan Seminar Hasil (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/309/seminars",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"309",
+								"seminars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Peserta Seminar Hasil (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student_id",
+									"value": "209",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/thesis/seminars/322/audiences",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"thesis",
+								"seminars",
+								"322",
+								"audiences"
+							],
+							"query": [
+								{
+									"key": "student_id",
+									"value": "209",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Peserta Seminar Hasil (Mahasiswa)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "student_id",
+									"value": "209",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/thesis/seminars/322/audiences",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"thesis",
+								"seminars",
+								"322",
+								"audiences"
+							],
+							"query": [
+								{
+									"key": "student_id",
+									"value": "209",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Sidang TA (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pengajuan Sidang TA (Mahasiswa)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Mahasiswa Bimbingan (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail TA Mahasiswa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Mahasiswa (dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Nilai TA (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pembatalan TA (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Persetujuan TA (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Permintaan Reviewer (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Permintaan Penguji (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Rekomendasi Seminar (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Input Nilai Sidang TA (Dosen)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Permintaan TA (Kaprodi) Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Form Penunjukan Pembimbing TA (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Permintaan Sidang (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Permintaan Semhas (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Form Penetapan Reviewer (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Form Penetapan Penguji (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Mahasiswa TA (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/theses/277/trials/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"theses",
+								"277",
+								"trials",
+								""
+							]
+						}
 					},
 					"response": []
 				}
@@ -1033,7 +2076,7 @@
 					"response": []
 				},
 				{
-					"name": "Approve Kehadiran Peserta Seminar",
+					"name": "Approve Kehadiran Peserta Seminar (Dosen)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1073,7 +2116,7 @@
 					"response": []
 				},
 				{
-					"name": "RejectKehadiran Peserta Seminar",
+					"name": "RejectKehadiran Peserta Seminar (Dosen)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1107,6 +2150,368 @@
 								"internship-students",
 								"1",
 								"reject-audiences"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Perusahaan KP (Kaprodi)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-agencies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-agencies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept/Reject Perusahaan KP (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-agencies/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-agencies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Usulan Proposal KP (Kaprodi)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-proposals",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-proposals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Mahasiswa KP (Kaprodi)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/internships",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail Usulan Proposal KP (Kaprodi)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-proposals/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-proposals",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logbook Harian (Kaprodi)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/daily-logbooks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"daily-logbooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Mahasiswa Selesai KP (Kaprodi)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/finished-internships",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"finished-internships"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Persetujuan Pembatalan KP (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-cancellations/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-cancellations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Penunjukan Pembimbing KP (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "supervisor_id",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-supervisors/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-supervisors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Persetujuan Nilai KP (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "supervisor_id",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/internship-grade/1/approval",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"internship-grade",
+								"1",
+								"approval"
 							]
 						}
 					},
