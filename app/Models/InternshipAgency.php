@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InternshipLogbook extends Model
+class InternshipAgency extends Model
 {
     use HasFactory;
 
-    protected $table = 'internship_logbooks';
+    protected $table = 'internship_agencies';
     protected $guarded = [];
 
-    public function internship()
+    public function proposals()
     {
-        return $this->belongsTo(Internship::class, 'id', 'internship_id');
+        return $this->hasMany(InternshipProposal::class, 'id', 'agency_id');
     }
+
 }
