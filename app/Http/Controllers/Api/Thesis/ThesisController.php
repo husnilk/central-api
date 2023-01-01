@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Thesis;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Models\Thesis;
 use App\Models\ThesisSupervisor;
 use Illuminate\Http\Request;
@@ -25,9 +26,8 @@ class ThesisController extends Controller
 
     public function show($id)
     {
-        $thesis = Thesis::where('student_id', auth()->id())
-            ->where('id', $id)
-            ->first();
+        $thesis = Thesis::with(['student', 'seminars', 'trials', 'supervisors'])
+            ->find($id);
 
         return response()->json($thesis);
     }
@@ -59,5 +59,11 @@ class ThesisController extends Controller
         $res->message = 'Gagal mengajukan permintaan TA';
         return response()->json($res);
 
+    }
+
+    public function showmahasiswa($id){
+        $mahasiswa = Student::find($id);
+
+        return response()->json($mahasiswa);
     }
 }

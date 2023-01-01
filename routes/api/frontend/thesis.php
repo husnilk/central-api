@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
     /** MAHASISWA */
+    Route::get('students/{id}', [ThesisController::class, 'showmahasiswa']);
     Route::get('/list/seminars', [ThesisListController::class, 'seminars']);
     Route::get('/list/trials', [ThesisListController::class, 'trials']);
 

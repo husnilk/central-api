@@ -18,12 +18,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "1511522001",
+									"value": "198201182008121002",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "1234",
 									"type": "default"
 								}
 							]
@@ -754,16 +754,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/thesis/advisors",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"theses",
-								"277",
-								"trials",
-								""
+								"thesis",
+								"advisors"
 							]
 						}
 					},
@@ -785,16 +783,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/theses/309",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"theses",
-								"277",
-								"trials",
-								""
+								"309"
 							]
 						}
 					},
