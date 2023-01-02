@@ -10,7 +10,7 @@ class ThesisTrialSubmissionController extends Controller
     //
     public function index()
     {
-        $trials = ThesisTrial::with('thesis')->whereIn('status', [
+        $trials = ThesisTrial::with('thesis.student')->whereIn('status', [
             ThesisTrial::STATUS_SUBMITTED,
             ThesisTrial::STATUS_SCHEDULED
             ])->get();
