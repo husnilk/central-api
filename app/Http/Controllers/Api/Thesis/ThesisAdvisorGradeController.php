@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Thesis;
 
 use App\Http\Controllers\Controller;
+use App\Models\Thesis;
+use Illuminate\Http\Request;
 
 class ThesisAdvisorGradeController extends Controller
 {

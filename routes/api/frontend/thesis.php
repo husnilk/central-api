@@ -61,10 +61,10 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
         Route::resource('reviewer-scores', ThesisReviewerScoreController::class)->only(['edit', 'update']);
 
         Route::resource('advisors.trials', ThesisSupervisorTrialController::class);
-        Route::resource('examiner-submissions', ThesisExaminerSubmissionController::class)->only(['show', 'update', 'destroy']);
+        Route::resource('examiner-submissions', ThesisExaminerSubmissionController::class)->only(['index', 'show', 'update', 'destroy']);
         Route::resource('examiner-scores', ThesisExaminerScoreController::class)->only(['edit', 'update']);
 
-        Route::resource('grades', ThesisAdvisorGradeController::class)->except(['destroy', 'create', 'store']);
+        Route::resource('grades', ThesisAdvisorGradeController::class)->except(['update', 'destroy', 'create', 'store']);
 
         /** KAPRODI */
         Route::resource('seminar-submissions', ThesisSeminarSubmissionController::class)->only(['index', 'show', 'update', 'destroy']);
