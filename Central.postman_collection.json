@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9917fa79-223e-437a-8d8a-c9b2b8d4cf30",
+		"_postman_id": "e9ede873-7bea-45bc-ba38-547730e00716",
 		"name": "Central",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,7 +23,7 @@
 								},
 								{
 									"key": "password",
-									"value": "1234",
+									"value": "456",
 									"type": "default"
 								}
 							]
@@ -1060,16 +1060,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/admin/thesis-submissions",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"theses",
-								"277",
-								"trials",
-								""
+								"admin",
+								"thesis-submissions"
 							]
 						}
 					},
@@ -1090,48 +1088,32 @@
 						},
 						"method": "POST",
 						"header": [],
-						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"theses",
-								"277",
-								"trials",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List Permintaan Sidang (Kaprodi)",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
 								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
+									"key": "lecturer_id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "position",
+									"value": "1",
+									"type": "default"
 								}
 							]
 						},
-						"method": "GET",
-						"header": [],
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/admin/theses/369/supervisors",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
+								"admin",
 								"theses",
-								"277",
-								"trials",
-								""
+								"369",
+								"supervisors"
 							]
 						}
 					},
@@ -1153,16 +1135,45 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/admin/thesis/seminar-submissions",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"theses",
-								"277",
-								"trials",
-								""
+								"admin",
+								"thesis",
+								"seminar-submissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Permintaan Sidang (Kaprodi)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/thesis/trial-submissions",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"thesis",
+								"trial-submissions"
 							]
 						}
 					},
@@ -1183,17 +1194,35 @@
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "lecturer_id",
+									"value": "4",
+									"type": "default"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/admin/thesis/seminars/67/reviewers",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"theses",
-								"277",
-								"trials",
-								""
+								"admin",
+								"thesis",
+								"seminars",
+								"67",
+								"reviewers"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1214,17 +1243,33 @@
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "lecturer_id",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "position",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/admin/thesis/trials/67/examiners",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"theses",
-								"277",
+								"admin",
+								"thesis",
 								"trials",
-								""
+								"67",
+								"examiners"
 							]
 						}
 					},
@@ -1246,16 +1291,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/theses/277/trials/",
+							"raw": "{{host}}/api/admin/theses",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"theses",
-								"277",
-								"trials",
-								""
+								"admin",
+								"theses"
 							]
 						}
 					},
