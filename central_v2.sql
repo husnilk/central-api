@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Server version:               5.7.33 - MySQL Community Server (GPL)
 -- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
+-- HeidiSQL Version:             12.0.0.6468
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -645,8 +645,8 @@ CREATE TABLE IF NOT EXISTS `internships` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `proposal_id` bigint(20) unsigned NOT NULL,
   `student_id` bigint(20) unsigned NOT NULL,
-  `advisor_id` bigint(20) unsigned DEFAULT NULL,
-  `status` enum('Diterima','Ditolak','Selesai','Dibatalkan','Sedang KP','Seminar','Berkas seminar tidak lengkap','Berkas seminar tidak sesuai','Seminar verified','Berkas KP tidak lengkap','Berkas KP tidak sesuai','Berkas KP verified','Selesai Praktek Lapangan') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `supervisor_id` bigint(20) unsigned DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   `start_at` date DEFAULT NULL,
   `end_at` date DEFAULT NULL,
   `report_title` text COLLATE utf8mb4_unicode_ci,
@@ -662,14 +662,15 @@ CREATE TABLE IF NOT EXISTS `internships` (
   `certificate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `report_receipt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `grade` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cancellation_reason` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `internships_seminar_room_id_foreign` (`seminar_room_id`),
   KEY `internships_proposal_id_foreign` (`proposal_id`),
   KEY `internships_student_id_foreign` (`student_id`),
-  KEY `internships_advisor_id_foreign` (`advisor_id`),
-  CONSTRAINT `internships_advisor_id_foreign` FOREIGN KEY (`advisor_id`) REFERENCES `lecturers` (`id`),
+  KEY `internships_advisor_id_foreign` (`supervisor_id`),
+  CONSTRAINT `internships_advisor_id_foreign` FOREIGN KEY (`supervisor_id`) REFERENCES `lecturers` (`id`),
   CONSTRAINT `internships_proposal_id_foreign` FOREIGN KEY (`proposal_id`) REFERENCES `internship_proposals` (`id`),
   CONSTRAINT `internships_seminar_room_id_foreign` FOREIGN KEY (`seminar_room_id`) REFERENCES `rooms` (`id`),
   CONSTRAINT `internships_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
@@ -683,6 +684,7 @@ CREATE TABLE IF NOT EXISTS `internship_agencies` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -698,6 +700,7 @@ CREATE TABLE IF NOT EXISTS `internship_logbooks` (
   `date` date NOT NULL,
   `activities` text COLLATE utf8mb4_unicode_ci,
   `note` text COLLATE utf8mb4_unicode_ci,
+  `status` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -712,8 +715,8 @@ CREATE TABLE IF NOT EXISTS `internship_proposals` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_at` date NOT NULL,
   `end_at` date NOT NULL,
-  `agencies_id` bigint(20) unsigned NOT NULL,
-  `status` enum('diajukan','revisi','diperbaiki','ditolak','disetujui','diterima') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `agency_id` bigint(20) unsigned NOT NULL,
+  `status` int(11) DEFAULT NULL,
   `note` text COLLATE utf8mb4_unicode_ci,
   `active` int(11) NOT NULL DEFAULT '1',
   `response_letter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -721,12 +724,32 @@ CREATE TABLE IF NOT EXISTS `internship_proposals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `internship_proposals_agencies_id_foreign` (`agencies_id`),
-  CONSTRAINT `internship_proposals_agencies_id_foreign` FOREIGN KEY (`agencies_id`) REFERENCES `internship_agencies` (`id`)
+  KEY `internship_proposals_agencies_id_foreign` (`agency_id`),
+  CONSTRAINT `internship_proposals_agencies_id_foreign` FOREIGN KEY (`agency_id`) REFERENCES `internship_agencies` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table central_v2.internship_proposals: ~0 rows (approximately)
 DELETE FROM `internship_proposals`;
+
+-- Dumping structure for table central_v2.internship_seminar_audiences
+CREATE TABLE IF NOT EXISTS `internship_seminar_audiences` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `internship_id` bigint(20) unsigned NOT NULL,
+  `student_id` bigint(20) unsigned NOT NULL,
+  `attended` int(11) NOT NULL DEFAULT '1',
+  `role` int(11) DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `internship_seminar_audiences_internship_id_foreign` (`internship_id`),
+  KEY `internship_seminar_audiences_student_id_foreign` (`student_id`),
+  CONSTRAINT `internship_seminar_audiences_internship_id_foreign` FOREIGN KEY (`internship_id`) REFERENCES `internships` (`id`),
+  CONSTRAINT `internship_seminar_audiences_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table central_v2.internship_seminar_audiences: ~0 rows (approximately)
+DELETE FROM `internship_seminar_audiences`;
 
 -- Dumping structure for table central_v2.lecturers
 CREATE TABLE IF NOT EXISTS `lecturers` (
@@ -789,9 +812,9 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table central_v2.migrations: ~59 rows (approximately)
+-- Dumping data for table central_v2.migrations: ~60 rows (approximately)
 DELETE FROM `migrations`;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
@@ -852,7 +875,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(56, '2022_07_10_182340_create_course_lo_details_table', 1),
 	(57, '2022_07_10_182341_create_course_plan_detail_outcomes_table', 1),
 	(58, '2022_07_10_182342_create_course_plan_detail_assessments_table', 1),
-	(59, '2022_07_10_182343_create_course_plan_detail_refs_table', 1);
+	(59, '2022_07_10_182343_create_course_plan_detail_refs_table', 1),
+	(60, '2022_12_30_182912_create_internship_seminar_audiences_table', 2);
 
 -- Dumping structure for table central_v2.model_has_permissions
 CREATE TABLE IF NOT EXISTS `model_has_permissions` (
@@ -6681,7 +6705,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `type`, `active`, `avatar`, `role`, `token`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
 	(1, 'admin', 'Administrator', 'si@it.unand.ac.id', '2021-01-24 05:09:45', '$2y$10$srtqbEqA4xn7i.KOoRtO2uLSaSQRgR7MA5UREFwRZFdv/gcXNO2Aa', NULL, NULL, 3, 1, NULL, NULL, NULL, '3o5Gfb1WZGBHUOUJ3wOi03y038HdNtI1Zsi6FSntazoAQgORoh2eUO1wHmcC', NULL, NULL, '2021-01-24 05:09:45', '2022-12-05 07:24:02'),
-	(2, '198201182008121002', 'Husnil Kamil', 'husnilk@it.unand.ac.id', NULL, '$2y$10$/1nOzk19gxv1/FBYbaQuW.T1g8f6WFCUK20ByKtVEQBGbY.7V8qd.', NULL, NULL, 2, 1, NULL, NULL, NULL, 'CcFpPxe291gitqGIOMACgtvpvyWfGO8RsiCWeU3dVrbKbeFepkmUQHvHeX4l', NULL, NULL, '2018-11-09 19:40:19', '2022-12-05 07:24:02'),
+	(2, '198201182008121002', 'Husnil Kamil', 'husnilk@it.unand.ac.id', NULL, '$2y$10$03Ngh0Zadnt3sq1HIOA6BuQDtx6j.Vp7MbaGhQrYAtc16fhJUidyq', NULL, NULL, 2, 1, NULL, NULL, NULL, 'CcFpPxe291gitqGIOMACgtvpvyWfGO8RsiCWeU3dVrbKbeFepkmUQHvHeX4l', NULL, NULL, '2018-11-09 19:40:19', '2022-12-05 14:42:22'),
 	(3, '198307272008121003', 'Hasdi Putra', 'hasdiputra@gmail.com', NULL, '$2y$10$ntxuYJh2o87fKE6YoTmPx.VzzyDZCfT7AKfibZSr03EvBXr.6rYya', NULL, NULL, 2, 1, NULL, NULL, NULL, 'CHD6tWSOzpzwsLhMDDkw9HgPooybYttTUdjtCOt22DFQ2ujAKD4ZJpV8zv9h', NULL, NULL, '2018-11-09 20:32:43', '2022-12-05 07:24:02'),
 	(4, '198001102008121002', 'Fajril Akbar', 'ijabee98@gmail.com', NULL, '$2y$10$ypOJARc0f5A8Iw0jf.MNzu9P/rrJgazoKIAKw6zIojBjMdlX5NR4S', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2018-11-09 20:35:29', '2022-12-05 07:24:02'),
 	(5, '196404091995121001', 'Surya Afnarius', 's_afnarius@yahoo.com', NULL, '$2y$10$oKHVjKJ6i78tIrXLsuqrNOQMqcbjANNXjtDUbZQByuqboYaS29GOG', NULL, NULL, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2018-11-09 20:38:21', '2022-12-05 07:24:02'),
@@ -7252,7 +7276,7 @@ CREATE TABLE IF NOT EXISTS `user_logins` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5690 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table central_v2.user_logins: ~5.836 rows (approximately)
+-- Dumping data for table central_v2.user_logins: ~5,836 rows (approximately)
 DELETE FROM `user_logins`;
 INSERT INTO `user_logins` (`id`, `user_id`, `login_at`, `login_ip`, `created_at`, `updated_at`) VALUES
 	(1, 430, '2021-02-12 01:32:05', '36.69.8.85', '2021-02-12 01:32:05', '2021-02-12 01:32:05'),
