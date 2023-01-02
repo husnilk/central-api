@@ -9,6 +9,17 @@ class InternshipSeminarAudience extends Model
 {
     use HasFactory;
 
+
+    const STATUS_NOT_VALIDATED = 0;
+    const STATUS_ATTENDED = 1;
+    const STATUS_UNATTENDED = 2;
+
+    const STATUSES = [
+        self::STATUS_NOT_VALIDATED => 'Belum divalidasi',
+        self::STATUS_ATTENDED => 'Hadir',
+        self::STATUS_UNATTENDED => 'Tidak Hadir'
+    ];
+
     protected $table = 'internship_seminar_audiences';
     protected $guarded = [];
 
@@ -21,4 +32,5 @@ class InternshipSeminarAudience extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
 }

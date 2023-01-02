@@ -10,14 +10,16 @@ use Illuminate\Http\Request;
 
 class ThesisSeminarAudienceController extends Controller
 {
-    public function store(Request $request){
-        $theses = Thesis::where('student_id', auth()->id())
-            ->get()
-            ->pluck('id')
-            ->toArray();
-        $seminar = ThesisSeminar::where('id', $id)
-            ->whereIn('thesis_id', $theses)
-            ->first();
+    public function index($seminar_id)
+    {
+        $seminar = ThesisSeminar::with('audiences')->find($seminar_id);
+
+        return response()->json($seminar);
+    }
+
+    public function store(Request $request, $seminar_id){
+
+        $seminar = ThesisSeminar::find($seminar_id);
         $audience = new ThesisSeminarAudience();
         $audience->thesis_seminar_id = $seminar->id;
         $audience->student_id = request('student_id');

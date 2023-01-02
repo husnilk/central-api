@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
     /** MAHASISWA */
+    Route::get('students/{id}', [ThesisController::class, 'showmahasiswa']);
     Route::get('/list/seminars', [ThesisListController::class, 'seminars']);
     Route::get('/list/trials', [ThesisListController::class, 'trials']);
 
@@ -37,11 +38,11 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
     Route::resource('theses.proposals', ThesisProposalController::class);
     Route::resource('theses.logbooks', ThesisLogbookController::class)->except(['edit', 'create']);
     Route::resource('theses.seminars', ThesisSeminarController::class)->except(['edit', 'create']);
-    Route::resource('theses.trials', ThesisTrialController::class)->only(['show', 'store']);
+    Route::resource('theses.trials', ThesisTrialController::class)->only(['show', 'store', 'index']);
 
     Route::group(['prefix' => 'thesis', 'as' => 'thesis.'], function () {
         /** MAHASISWA */
-        Route::resource('seminars.audiences', ThesisSeminarAudienceController::class)->only(['create', 'store', 'destroy']);
+        Route::resource('seminars.audiences', ThesisSeminarAudienceController::class)->only(['create', 'store', 'destroy', 'index']);
 
         /** DOSEN */
         Route::resource('advisors', ThesisAdvisorController::class)->except(['create', 'store']); //Tadi diubah
@@ -60,10 +61,10 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
         Route::resource('reviewer-scores', ThesisReviewerScoreController::class)->only(['edit', 'update']);
 
         Route::resource('advisors.trials', ThesisSupervisorTrialController::class);
-        Route::resource('examiner-submissions', ThesisExaminerSubmissionController::class)->only(['show', 'update', 'destroy']);
+        Route::resource('examiner-submissions', ThesisExaminerSubmissionController::class)->only(['index', 'show', 'update', 'destroy']);
         Route::resource('examiner-scores', ThesisExaminerScoreController::class)->only(['edit', 'update']);
 
-        Route::resource('grades', ThesisAdvisorGradeController::class)->except(['destroy', 'create', 'store']);
+        Route::resource('grades', ThesisAdvisorGradeController::class)->except(['update', 'destroy', 'create', 'store']);
 
         /** KAPRODI */
         Route::resource('seminar-submissions', ThesisSeminarSubmissionController::class)->only(['index', 'show', 'update', 'destroy']);

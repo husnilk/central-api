@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 class ThesisLogbookController extends Controller
 {
     public function index($thesis_id){
-        $student_id = auth()->id();
-        $logbooks = ThesisLogbook::where('student_id', $student_id)
-            ->where('thesis_id', $thesis_id)
+        $logbooks = ThesisLogbook::where('thesis_id', $thesis_id)
             ->get();
 
         return response()->json([
@@ -22,61 +20,52 @@ class ThesisLogbookController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request, $thesis_id){
         $logbook = new ThesisLogbook();
-        $logbook->thesis_id = request('thesis_id');
+        $logbook->thesis_id = $thesis_id;
         $logbook->supervisor_id = request('supervisor_id');
         $logbook->date = request('date');
         $logbook->status = ThesisLogbook::SUBMITTED;
         $logbook->progress = request('progress');
         $logbook->problem = request('problem');
         if($logbook->save()){
-            return response()->json([
-                'status'=>'success',
-                'message'=> 'Berhasil menambahkan logbook',
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error',
-                'message'=> 'Gagal menambahkan logbook',
-            ]);
+            $res = new \stdClass();
+            $res->status = 'success';
+            $res->message = 'Berhasil menambah logbook TA';
+            $res->logbook = $logbook;
+            return response()->json($res);
+
         }
+        $res = new \stdClass();
+        $res->status = 'failed';
+        $res->message = 'Gagal menambah logbook TA TA';
+        return response()->json($res);
     }
 
-    public function show($id){
-        $theses = Thesis::where('student_id', auth()->id())
-            ->get();
-        $logbook = ThesisLogbook::where('id', $id)
-            ->whereIn('thesis_id', $theses->toArray())
-            ->get();
+    public function show($thesis_id, $id){
+        $logbook = ThesisLogbook::find($id);
 
         return response()->json($logbook);
     }
 
-    public function update($id){
-        $theses = Thesis::where('student_id', auth()->id())
-            ->get();
-        $logbook = ThesisLogbook::where('id', $id)
-            ->whereIn('thesis_id', $theses->toArray())
-            ->get();
+    public function update($thesis_id, $id){
+        $logbook = ThesisLogbook::find($id);
 
-        $logbook->thesis_id = request('thesis_id');
-        $logbook->supervisor_id = request('supervisor_id');
         $logbook->date = request('date');
         $logbook->progress = request('progress');
         $logbook->problem = request('problem');
 
         if($logbook->save()){
-            return response()->json([
-                'status'=>'success',
-                'message'=> 'Berhasil mengupdate logbook',
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error',
-                'message'=> 'Gagal mengupdate logbook',
-            ]);
+            $res = new \stdClass();
+            $res->status = 'success';
+            $res->message = 'Berhasil mengupdate logbook TA';
+            $res->logbook = $logbook;
+            return response()->json($res);
         }
+        $res = new \stdClass();
+        $res->status = 'failed';
+        $res->message = 'Gagal mengupdate logbook TA';
+        return response()->json($res);
     }
 
 }

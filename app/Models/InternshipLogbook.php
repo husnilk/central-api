@@ -14,6 +14,6 @@ class InternshipLogbook extends Model
 
     public function internship()
     {
-        return $this->belongsTo(Internship::class);
+        return $this->belongsTo(Internship::class, 'id', 'internship_id');
     }
 }

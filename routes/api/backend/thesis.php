@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialExaminerController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialResultController;
 use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialSubmissionController;
+use App\Http\Controllers\Api\Thesis\ThesisSupervisorAssignmentController;
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'backend.'], function(){
 
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin', 'as' => 'backend.'], 
 
     Route::group(['prefix' => 'thesis', 'as' => 'thesis.'], function() {
 
+        Route::post('supervisors-assignments', [ThesisSupervisorAssignmentController::class, "store"]);
         Route::resource('proposals.audiences', ThesisProposalAudienceController::class)->only(['create', 'store', 'destroy']);
 
         Route::resource('seminar-submissions', ThesisSeminarSubmissionController::class)->only(['index', 'show', 'edit', 'update']);
