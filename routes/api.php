@@ -25,6 +25,13 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
+Route::get('/', function () {
+    return response()->json([
+        'status' => 'not authorize',
+        'code' => '403'
+    ], 403);
+})->name('notAutenticate');
+
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/me/update', [AuthController::class, 'update']);
