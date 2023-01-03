@@ -14,13 +14,16 @@ class AuthController extends Controller
         $credentials = request(['username', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Not Authenticated'], 401);
         }
 
         $user = Auth::user();
         return response()->json([
             'status' => 'success',
-            'user' => $user,
+            'name' => $user->name,
+            'email' => $user->email,
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',

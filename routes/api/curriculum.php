@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Curriculum\LecturerController;
 use App\Http\Controllers\Api\Curriculum\ListCoursePlanController;
 use App\Http\Controllers\Api\Curriculum\RefController;
 
+/**
 Route::get('/rps', [ListCoursePlanController::class, 'index']);
 Route::post('/rps', [ListCoursePlanController::class, 'search']);
 Route::get('/rps/{rpsId}', [ListCoursePlanController::class, 'show']);
@@ -48,3 +49,4 @@ Route::delete('/bo/rps/{rpsId}/session/{sessionId}', [CoursePlanDetailController
 Route::get('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'index']);
 Route::post('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'store']);
 Route::delete('/bo/rps/{rpsId}/lecturers/{lecturersId}', [LecturerController::class, 'destroy']);
+**/
