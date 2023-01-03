@@ -26,11 +26,13 @@ class ThesisSupervisor extends Pivot
     const SUBMITTED = 0;
     const ACCEPTED = 1;
     const REJECTED = 2;
+    const CANCELLED = 3;
 
     const STATUS_SELECT = [
         self::SUBMITTED => 'Submitted',
         self::ACCEPTED => 'Diterima',
-        self::REJECTED => 'Ditolak'
+        self::REJECTED => 'Ditolak',
+        self::CANCELLED => 'Dibatalkan'
     ];
 
     const POSITION_SELECT = [

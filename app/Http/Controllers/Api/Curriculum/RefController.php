@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Curriculum;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\CoursePlan;
 use App\Models\CoursePlanReference;
-use \stdClass;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use stdClass;
 
 class RefController extends Controller
 {

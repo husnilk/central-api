@@ -1,16 +1,14 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ListCoursePlanController;
-use App\Http\Controllers\Api\CourseLoController;
-use App\Http\Controllers\Api\RefController;
-use App\Http\Controllers\Api\CoursePlanAssessmentController;
-use App\Http\Controllers\Api\CoursePlanDetailController;
-use App\Http\Controllers\Api\LecturerController;
-use App\Http\Controllers\Api\CoursePlanController;
-use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Curriculum\CourseLoController;
+use App\Http\Controllers\Api\Curriculum\CoursePlanAssessmentController;
+use App\Http\Controllers\Api\Curriculum\CoursePlanController;
+use App\Http\Controllers\Api\Curriculum\CoursePlanDetailController;
+use App\Http\Controllers\Api\Curriculum\LecturerController;
+use App\Http\Controllers\Api\Curriculum\ListCoursePlanController;
+use App\Http\Controllers\Api\Curriculum\RefController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +21,9 @@ use App\Http\Controllers\Api\AuthController;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::get('/', function () {
     return response()->json([
@@ -36,12 +34,16 @@ Route::get('/', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/me/update', [AuthController::class, 'update']);
+Route::get('/me', [AuthController::class, 'me']);
+Route::post('/password', [AuthController::class, 'password']);
+Route::get('/forbidden', [AuthController::class, 'forbidden'])->name('api.forbidden');
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
     //Auth
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     //List Rps
     Route::get('/rps', [ListCoursePlanController::class, 'index']);
     Route::post('/rps', [ListCoursePlanController::class, 'search']);
@@ -81,7 +83,12 @@ Route::group(['middleware' => ['api', 'auth']], function ($router) {
     //Lecturer
     Route::get('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'index']);
     Route::post('/bo/rps/{rpsId}/lecturers', [LecturerController::class, 'store']);
-    Route::delete('/bo/rps/{rpsId}/lecturers/{lecturersId}', [LecturerController::class, 'destroy']);    
-    
+    Route::delete('/bo/rps/{rpsId}/lecturers/{lecturersId}', [LecturerController::class, 'destroy']);
+
 });
 
+require __DIR__ . '/api/frontend/thesis.php';
+require __DIR__ . '/api/frontend/intern.php';
+
+require __DIR__ . '/api/backend/thesis.php';
+require __DIR__ . '/api/backend/intern.php';

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Curriculum;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\CoursePlan;
 use App\Models\CoursePlanLecturer;
-use \stdClass;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use stdClass;
 
 
 class LecturerController extends Controller
@@ -28,7 +28,7 @@ class LecturerController extends Controller
         $request->validate([
             'lecturer_id' => ['required'],
         ]);
-        
+
         $lecturer = new CoursePlanLecturer;
         $lecturer->course_plan_id = $rpsId;
         $lecturer->lecturer_id = $request->lecturer_id;

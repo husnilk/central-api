@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Curriculum;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\CourseLo;
-use \stdClass;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use stdClass;
 
 class CourseLoController extends Controller
 {
