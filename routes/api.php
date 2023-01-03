@@ -27,6 +27,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/', function () {
+    return response()->json([
+        'status' => 'not authorize',
+        'code' => '403'
+    ], 403);
+})->name('notAutenticate');
+
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
