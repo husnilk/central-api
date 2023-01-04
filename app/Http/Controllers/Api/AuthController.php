@@ -62,9 +62,4 @@ class AuthController extends Controller
             'message' => 'Not Authenticated'
         ], 401);
     }
-
-    public function me()
-    {
-        return auth()->user();
-    }
 }

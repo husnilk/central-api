@@ -1,25 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Thesis\Backend\ThesisController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisLogbookController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisProposalAudienceController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisProposalController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarAcceptanceController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarAudienceController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarResultController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarReviewerController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarSubmissionController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSubmissionController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSupervisorController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTopicController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialAcceptanceController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialExaminerController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialResultController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialSubmissionController;
-use App\Http\Controllers\Api\Thesis\ThesisSupervisorAssignmentController;
-
 /**
 Route::resource('thesis-topics', ThesisTopicController::class);
 

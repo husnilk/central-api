@@ -1,14 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Internship\InternshipAgencyController;
-use App\Http\Controllers\Api\Internship\KaprodiInternshipController;
-use App\Http\Controllers\Api\Internship\LecturerInternshipController;
-use App\Http\Controllers\Api\Internship\MyInternshipAudienceController;
-use App\Http\Controllers\Api\Internship\MyInternshipController;
-use App\Http\Controllers\Api\Internship\MyInternshipLogbookController;
-use App\Http\Controllers\Api\Internship\MyInternshipStatementController;
-use App\Http\Controllers\Api\Internship\MyInternshipSubmissionController;
-
 /**
 //Mahasiswa
 Route::resource('my-internship.logbook', MyInternshipLogbookController::class);

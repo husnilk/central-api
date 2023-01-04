@@ -1,30 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Thesis\Backend\ThesisSeminarReviewerAssignmentController;
-use App\Http\Controllers\Api\Thesis\Backend\ThesisTrialExaminerAssignmentController;
-use App\Http\Controllers\Api\Thesis\ThesisAdvisorCancellationController;
-use App\Http\Controllers\Api\Thesis\ThesisAdvisorController;
-use App\Http\Controllers\Api\Thesis\ThesisAdvisorGradeController;
-use App\Http\Controllers\Api\Thesis\ThesisAdvisorLogbookController;
-use App\Http\Controllers\Api\Thesis\ThesisController;
-use App\Http\Controllers\Api\Thesis\ThesisExaminerScoreController;
-use App\Http\Controllers\Api\Thesis\ThesisExaminerSubmissionController;
-use App\Http\Controllers\Api\Thesis\ThesisFinalController;
-use App\Http\Controllers\Api\Thesis\ThesisListController;
-use App\Http\Controllers\Api\Thesis\ThesisLogbookController;
-use App\Http\Controllers\Api\Thesis\ThesisProposalController;
-use App\Http\Controllers\Api\Thesis\ThesisProposalGradeController;
-use App\Http\Controllers\Api\Thesis\ThesisReviewerScoreController;
-use App\Http\Controllers\Api\Thesis\ThesisReviewerSubmissionController;
-use App\Http\Controllers\Api\Thesis\ThesisSeminarAudienceController;
-use App\Http\Controllers\Api\Thesis\ThesisSeminarController;
-use App\Http\Controllers\Api\Thesis\ThesisSeminarSubmissionController;
-use App\Http\Controllers\Api\Thesis\ThesisSubmissionController;
-use App\Http\Controllers\Api\Thesis\ThesisSupervisorSeminarController;
-use App\Http\Controllers\Api\Thesis\ThesisSupervisorSubmissionController;
-use App\Http\Controllers\Api\Thesis\ThesisSupervisorTrialController;
-use App\Http\Controllers\Api\Thesis\ThesisTrialController;
-use App\Http\Controllers\Api\Thesis\ThesisTrialSubmissionController;
 use Illuminate\Support\Facades\Route;
 
 
