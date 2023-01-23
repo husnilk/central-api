@@ -1,9 +1,7 @@
 <?php
 
 /**
-//Mahasiswa
-Route::resource('my-internship.logbook', MyInternshipLogbookController::class);
-Route::resource('my-internship', MyInternshipController::class);
+
 Route::post('my-internship-submissions', [MyInternshipSubmissionController::class, 'store']);
 Route::post('my-internship/{internship_id}/finish-statement', [MyInternshipStatementController::class, 'store']);
 Route::patch('my-internship/{internship_id}/ready-statement', [MyInternshipStatementController::class, 'balasankp']);

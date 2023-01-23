@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +21,18 @@ Route::get('/forbidden', [AuthController::class, 'forbidden'])->name('api.forbid
 
 Route::group(['middleware' => ['api', 'auth']], function ($router) {
     //Auth
-    Route::post('/me/update', [AuthController::class, 'update']);
-    Route::get('/me', [AuthController::class, 'me']);
-    Route::post('/password', [AuthController::class, 'password']);
+    Route::post('/me/update', [ProfileController::class, 'store']);
+    Route::get('/me', [ProfileController::class, 'index']);
+    Route::post('/password', [ProfileController::class, 'password']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/submit-token', [ProfileController::class, 'mobileToken']);
 
     require __DIR__ . '/api/curriculum.php';
+
+    require __DIR__ . '/api/thesis.php';
+
+    require __DIR__ . '/api/internship.php';
 
     require __DIR__ . '/api/frontend/thesis.php';
     require __DIR__ . '/api/frontend/intern.php';

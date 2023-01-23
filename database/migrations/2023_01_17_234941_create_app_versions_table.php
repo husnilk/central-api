@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('app_versions', function (Blueprint $table) {
             $table->id();
             $table->string('app_id');
-            $table->string('access_token');
+            $table->string('app_token')->unique();
             $table->string('version');
             $table->integer('major_ver')->nullable();
             $table->integer('minor_ver')->nullable();
-            $table->integer('mandatory')->default(0);
+            $table->integer('enabled')->default(0);
             $table->integer('active')->default(0);
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

@@ -18,12 +18,13 @@ class AppVersionFactory extends Factory
     {
         return [
             'app_id' => $this->faker->uuid(),
-            'access_token' => $this->faker->uuid,
+            'app_token' => $this->faker->uuid,
             'version' => $this->faker->randomDigit(),
             'major_ver' => $this->faker->randomDigit(),
             'minor_ver' => $this->faker->randomDigit(),
-            'mandatory' => $this->faker->randomElement([0, 1]),
-            'active' => $this->faker->randomElement([0, 1])
+            'enabled' => $this->faker->randomElement([0, 1]),
+            'active' => $this->faker->randomElement([0, 1]),
+            'url' => $this->faker->url,
         ];
     }
 }

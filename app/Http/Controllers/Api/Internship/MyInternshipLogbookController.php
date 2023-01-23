@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\Internship\Frontend;
+namespace App\Http\Controllers\Api\Internship;
 
 use App\Http\Controllers\Controller;
-use App\Models\Internship;
-use App\Models\InternshipLogbook;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MyInternshipLogbookController extends Controller
@@ -63,5 +60,4 @@ class MyInternshipLogbookController extends Controller
         return response()->json($res);
 
     }
-
 }
