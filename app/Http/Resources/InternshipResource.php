@@ -16,15 +16,15 @@ class InternshipResource extends JsonResource
     {
 //        return parent::toArray($request);
         return [
-            'id' => $this->id,
-            'company' => $this->company->name,
-            'title' => $this->title,
-            'start_at' => $this->start_at,
-            'end_at' => $this->end_at,
-            'status' => $this->status,
-            'supervisor' => $this->supervisor_id,
-            'supervisor_name' => $this->supervisor ? $this->supervisor->name : '-',
-            'grade' => $this->grade,
+//            'id' => $this->id,
+//            'company' => $this->company->name,
+//            'title' => $this->title,
+//            'start_at' => $this->start_at,
+//            'end_at' => $this->end_at,
+//            'status' => $this->status,
+//            'supervisor' => $this->supervisor_id,
+//            'supervisor_name' => $this->supervisor ? $this->supervisor->name : '-',
+//            'grade' => $this->grade,
         ];
     }
 }

@@ -12,10 +12,11 @@ class MyInternshipController extends Controller
 
     public function index()
     {
-
         $internships = Internship::where('student_id', auth()->id())
             ->orderBy('internships.start_at')
             ->get();
+
+       // return response()->json($internships);
 
         return  new InternshipResource($internships);
     }
