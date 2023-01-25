@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Internship;
+use App\Models\InternshipProposal;
+use App\Models\Lecturer;
 use App\Models\Student;
 use App\Models\Thesis;
 use App\Models\ThesisTopic;
@@ -21,13 +24,14 @@ class InternshipFactory extends Factory
     {
         $student = Student::factory()->create();
         return [
-            'topic_id' => ThesisTopic::factory(),
-            'student_id' => $student->id,
-            'title' => $this->faker->sentence,
-            'abstract' => $this->faker->paragraph,
-            'start_at' => $this->faker->dateTime(),
-            'status' => $this->faker->randomElement(array_keys(Thesis::STATUS_SELECT)),
-            'created_by' => $student->id
+            'proposal_id' => InternshipProposal::factory(),
+            'student_id' => Student::factory(),
+            'supervisor_id' => Lecturer::factory(),
+            'status' => $this->faker->randomElement(array_keys(Internship::STATUSES)),
+            'start_at' => $this->faker->date,
+            'end_at' => $this->faker->date,
+            'report_title' => $this->faker->title,
+            'division' => $this->faker->randomElement(["IT", 'Teknisi', 'Maintenance']),
         ];
     }
 }

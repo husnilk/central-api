@@ -16,9 +16,10 @@ class MyInternshipController extends Controller
             ->orderBy('internships.start_at')
             ->get();
 
-       // return response()->json($internships);
+//        $internship = Internship::find(1);
+//        return new InternshipResource($internship);
 
-        return  new InternshipResource($internships);
+        return InternshipResource::collection($internships);
     }
 
 

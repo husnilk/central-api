@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\InternshipCompany;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,17 @@ class InternshipProposalFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'company_id' => InternshipCompany::factory(),
+            'title' => $this->faker->title,
+            'background' => $this->faker->text,
+            'purpose' => $this->faker->text,
+            'planning' => $this->faker->text,
+            'start_at' => $this->faker->date,
+            'end_at' => $this->faker->date,
+            'status' => $this->faker->randomElement([0, 1]),
+            'note' => $this->faker->text,
+            'active' => $this->faker->randomElement([0, 2]),
+            'response_letter' => $this->faker->filePath(),
         ];
     }
 }

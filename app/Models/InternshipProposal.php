@@ -35,9 +35,9 @@ class InternshipProposal extends Model
         return $this->hasMany(Internship::class, 'id', 'internship_id');
     }
 
-    public function agency()
+    public function company()
     {
-        return $this->belongsTo(InternshipAgency::class, 'id', 'agency_id');
+        return $this->belongsTo(InternshipCompany::class, 'company_id', 'id');
     }
 
     public function students()
