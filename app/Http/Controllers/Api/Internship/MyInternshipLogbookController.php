@@ -3,15 +3,22 @@
 namespace App\Http\Controllers\Api\Internship;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InternshipLogCollection;
+use App\Http\Resources\InternshipLogResource;
+use App\Models\Internship;
+use App\Models\InternshipLogbook;
 use Illuminate\Http\Request;
 
 class MyInternshipLogbookController extends Controller
 {
     public function index($internship_id)
     {
-        $internship = Internship::with('logbooks')->find($internship_id);
+        $uid = auth()->user()->id;
+        $internship = Internship::ownedBy($uid)->where('id', $internship_id)
+            ->first();
+        $logbooks = $internship->logbooks;
 
-        return response()->json($internship);
+        return InternshipLogResource::collection($logbooks);
     }
 
     public function store(Request $request, $internship_id)
@@ -27,7 +34,7 @@ class MyInternshipLogbookController extends Controller
         if ($logbook->save()) {
             $res->status = 'success';
             $res->message = 'Berhasil menambahkan data logbook';
-            $res->logbook = $logbook;
+            $res->data = new InternshipLogResource($logbook);
         } else {
             $res->status = 'failed';
             $res->message = 'Gagal menambahkan data';
@@ -52,7 +59,7 @@ class MyInternshipLogbookController extends Controller
         if ($logbook->save()) {
             $res->status = 'success';
             $res->message = 'Berhasil memperbaharui data logbook';
-            $res->logbook = $logbook;
+            $res->data = $logbook;
         } else {
             $res->status = 'failed';
             $res->message = 'Gagal mengupdate data';

@@ -57,4 +57,10 @@ class Internship extends Model
     {
         return $this->hasMany(InternshipLogbook::class, 'internship_id', 'id');
     }
+
+    public function ownedBy($id)
+    {
+        return $this->where('student_id', $id);
+    }
+
 }
