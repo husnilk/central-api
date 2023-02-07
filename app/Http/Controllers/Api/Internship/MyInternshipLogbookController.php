@@ -7,6 +7,7 @@ use App\Http\Resources\InternshipLogCollection;
 use App\Http\Resources\InternshipLogResource;
 use App\Models\Internship;
 use App\Models\InternshipLogbook;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MyInternshipLogbookController extends Controller

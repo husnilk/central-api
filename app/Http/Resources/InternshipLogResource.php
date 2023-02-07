@@ -17,7 +17,7 @@ class InternshipLogResource extends JsonResource
         return [
             'id' => $this->id,
             'date' => $this->date,
-            'activities' => $this->activies,
+            'activities' => $this->activities,
             'note' => $this->note,
             'status' => $this->status,
             'created_at' => $this->created_at
