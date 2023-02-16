@@ -40,7 +40,7 @@ class Staff extends Model
     ];
 
     protected $guarded = [];
-    protected $dates = ['birthday'];
+    protected $casts = ['birthday'];
     public $incrementing = false;
 
     public function user()

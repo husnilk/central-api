@@ -44,7 +44,7 @@ class Thesis extends Model
 
     protected $table = 'theses';
     protected $guarded = [];
-    protected $dates = ['start_at'];
+    protected $casts = ['start_at'];
 
     /** RELATIONSHIP */
     public function topic()

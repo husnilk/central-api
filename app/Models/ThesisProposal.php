@@ -17,7 +17,7 @@ class ThesisProposal extends Model
     ];
 
     protected $table = 'thesis_proposals';
-    protected $dates = ['datetime'];
+    protected $casts = ['datetime'];
 
     protected $guarded = [];
 
