@@ -18,7 +18,6 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-
 //require __DIR__.'/auth.php';
 Route::group(['prefix' => 'auth'], function ($router){
     Route::post('login', 'AuthController@login');
@@ -30,3 +29,9 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
     Route::post('me', 'AuthController@me');
 });
 
+
+Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+});
