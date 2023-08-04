@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Curriculum;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\CoursePlan;
-use \stdClass;
-use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use stdClass;
 
 class ListCoursePlanController extends Controller
 {
+
+
     public function index()
     {
         $coursePlans = CoursePlan::select('id', 'code', 'name', 'credit', 'semester', 'rev', 'created_at')->get();
@@ -50,7 +52,7 @@ class ListCoursePlanController extends Controller
         $data = CoursePlan::select('id', 'course_id', 'code as course_code', 'name as course_name', 'credit as course_credit', 'description as course_desc', 'rev as course_rev', 'semester as course_semester', 'material as course_material', 'created_at as course_created_at', 'created_by', 'validated_by', 'validated_at')
                         ->where('id' ,$rpsId)
                         ->first();
-        
+
         $data->course_creator = $data->creator();
         $data->course_validator = $data->validator();
         $data->curriculum_lo = $data->curriculumLo();

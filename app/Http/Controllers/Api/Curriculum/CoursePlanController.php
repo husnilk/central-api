@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Curriculum;
 
+use App\Http\Controllers\Api\CoursePlanAssessments;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\CoursePlan;
 use App\Models\CoursePlanLecturer;
-use Illuminate\Support\Facades\Auth;
-use \stdClass;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
+use stdClass;
 
 class CoursePlanController extends Controller
 {
@@ -28,6 +28,7 @@ class CoursePlanController extends Controller
         foreach($data as $include){
             $include->editable = false;
         }
+        dd($data);
 
         $response = new stdClass;
         $response->count = $data->count();
@@ -69,7 +70,7 @@ class CoursePlanController extends Controller
         $data = CoursePlan::select('id', 'course_id', 'code as course_code', 'name as course_name', 'credit as course_credit', 'description as course_desc', 'rev as course_rev', 'semester as course_semester', 'material as course_material', 'created_at as course_created_at', 'created_by', 'validated_by', 'validated_at')
                         ->where('id' ,$rpsId)
                         ->first();
-        
+
         $data->course_creator = $data->creator();
         $data->course_validator = $data->validator();
         $data->curriculum_lo = $data->curriculumLo();
