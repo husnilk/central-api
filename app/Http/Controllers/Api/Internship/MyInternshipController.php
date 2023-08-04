@@ -3,28 +3,29 @@
 namespace App\Http\Controllers\Api\Internship;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InternshipResource;
 use App\Models\Internship;
-use App\Models\InternshipSeminarAudience;
 use Illuminate\Http\Request;
 
 class MyInternshipController extends Controller
 {
+
     public function index()
     {
-        $internships = Internship::select('internships.id as id', 'internship_agencies.name as agency', 'internships.report_title as title', 'internships.start_at as start_at', 'internships.end_at as end_at', 'internships.status as status', 'internships.supervisor_id as supervisor_id', 'lecturers.name as supervisor', 'internships.grade as grade')
-            ->leftJoin('internship_proposals', 'internships.proposal_id', '=', 'internship_proposals.id')
-            ->leftJoin('internship_agencies', 'internship_proposals.agency_id', '=', 'internship_agencies.id')
-            ->leftJoin('lecturers', 'lecturers.id', '=', 'internships.supervisor_id')
-            ->where('internships.student_id', auth()->id())
-            ->orderBy('internships.start_at', 'asc')
+        $internships = Internship::where('student_id', auth()->id())
+            ->orderBy('internships.start_at')
             ->get();
 
-        $response = new \stdClass();
-        $response->status = 'success';
-        $response->count = $internships->count();
-        $response->internship = $internships;
+//        $internship = Internship::find(1);
+//        return new InternshipResource($internship);
 
-        return response()->json($response);
+        return InternshipResource::collection($internships);
+    }
+
+
+    public function store(Request $request)
+    {
+        //
     }
 
     public function show($id)
@@ -55,4 +56,5 @@ class MyInternshipController extends Controller
 
         return response()->json($internship);
     }
+
 }

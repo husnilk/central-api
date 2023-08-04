@@ -58,13 +58,10 @@ class User extends Authenticatable implements JWTSubject
         switch ($this->type) {
             case self::STUDENT:
                 return $this->hasOne(Student::class, 'id');
-                break;
             case self::LECTURER:
                 return $this->hasOne(Lecturer::class, 'id');
-                break;
             case self::STAFF:
                 return $this->hasOne(Staff::class, 'id');
-                break;
         }
         return null;
     }

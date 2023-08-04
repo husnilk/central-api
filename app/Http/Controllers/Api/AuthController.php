@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppVersion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,16 +12,32 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $app_token = $request->get('app_token');
+
+        $app_version = AppVersion::where('app_token', $app_token)
+            ->where('enabled', 1)
+            ->first();
+
+        if( $app_version != null){
+            return response()->json([
+                'status' => 'outdated',
+                'message' => 'Outdated Apps. Please update the app'], 400);
+        }
+
+
         $credentials = request(['username', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Not Authenticated'], 401);
         }
 
         $user = Auth::user();
         return response()->json([
             'status' => 'success',
-            'user' => $user,
+            'name' => $user->name,
+            'email' => $user->email,
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',

@@ -30,7 +30,7 @@ class Internship extends Model
 
     public function proposal()
     {
-        return $this->belongsTo('proposal_id', 'id', InternshipProposal::class);
+        return $this->belongsTo(InternshipProposal::class, 'proposal_id', 'id');
     }
 
     public function student()
@@ -40,7 +40,7 @@ class Internship extends Model
 
     public function supervisor()
     {
-        return $this->belongsTo(Lecturer::class, 'id', 'supervisor_id');
+        return $this->belongsTo(Lecturer::class, 'supervisor_id', 'id');
     }
 
     public function room()
@@ -57,4 +57,10 @@ class Internship extends Model
     {
         return $this->hasMany(InternshipLogbook::class, 'internship_id', 'id');
     }
+
+    public function scopeOwnedBy($query, $id)
+    {
+        return $query->where('student_id', $id);
+    }
+
 }

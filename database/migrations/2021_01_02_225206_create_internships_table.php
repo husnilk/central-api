@@ -12,30 +12,34 @@ class CreateInternshipsTable extends Migration
             $table->id();
             $table->foreignId('proposal_id');
             $table->foreignId('student_id');
-            $table->foreignId('advisor_id')->nullable();
-            $table->enum('status',['Diterima','Ditolak','Selesai','Dibatalkan','Sedang KP','Seminar','Berkas seminar tidak lengkap','Berkas seminar tidak sesuai','Seminar verified','Berkas KP tidak lengkap','Berkas KP tidak sesuai','Berkas KP verified','Selesai Praktek Lapangan'])->nullable();
+            $table->foreignId('supervisor_id')->nullable();
+            $table->integer('status')->default(0);
             $table->date('start_at')->nullable();
             $table->date('end_at')->nullable();
 
             $table->text('report_title')->nullable();
+            $table->text('division')->nullable();
             $table->date('seminar_date')->nullable();
             $table->foreignId('seminar_room_id')->nullable();
             $table->string('link_seminar')->nullable();
             $table->date('seminar_deadline')->nullable();
-            $table->string('attendees_list')->nullable();
-            $table->string('internship_score')->nullable();
-            $table->string('activity_report')->nullable();
-            $table->string('news_event')->nullable();
-            $table->string('work_report')->nullable();
-            $table->string('certificate')->nullable();
-            $table->string('report_receipt')->nullable();
-            $table->string('grade')->nullable();
+            $table->date('final_report_deadline')->nullable();
+            $table->string('field_score')->nullable();
+            $table->text('seminar_report')->nullable();
+            $table->string('final_grade')->nullable();
+            $table->string('file_attendees_list')->nullable();
+            $table->string('file_seminar_report')->nullable();
+            $table->string('file_logbook_report')->nullable();
+            $table->string('file_final_report')->nullable();
+            $table->string('file_certificate')->nullable();
+            $table->string('file_report_receipt')->nullable();
+            $table->string('file_field_grade')->nullable();
             $table->timestamps();
 
             $table->foreign('seminar_room_id')->references('id')->on('rooms');
             $table->foreign('proposal_id')->references('id')->on('internship_proposals');
             $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('advisor_id')->references('id')->on('lecturers');
+            $table->foreign('supervisor_id')->references('id')->on('lecturers');
         });
     }
 
