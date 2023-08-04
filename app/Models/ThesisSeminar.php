@@ -12,7 +12,7 @@ class ThesisSeminar extends Model
 
     protected $table = 'thesis_seminars';
     protected $guarded = [];
-    protected $dates = ['registered_at', 'seminar_at'];
+    protected $casts = ['registered_at', 'seminar_at'];
 
     const STATUS_DRAFT = 0;
     const STATUS_SUBMITTED = 1;
