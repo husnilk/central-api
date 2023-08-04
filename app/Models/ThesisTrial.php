@@ -38,7 +38,7 @@ class ThesisTrial extends Model
 
     protected $table = 'thesis_trials';
     protected $guarded = [];
-    protected $dates = ['registered_at', 'trial_at'];
+    protected $casts = ['registered_at', 'trial_at'];
 
     public function thesis()
     {

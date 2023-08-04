@@ -10,18 +10,20 @@ class CreateInternshipProposalsTable extends Migration
     {
         Schema::create('internship_proposals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('company_id');
             $table->string('title');
+            $table->text('background')->nullable();
+            $table->text('purpose')->nullable();
+            $table->text('planning')->nullable();
             $table->date('start_at');
             $table->date('end_at');
-            $table->foreignId('agencies_id');
-            $table->enum('status',['diajukan','revisi','diperbaiki','ditolak','disetujui','diterima'])->nullable();
+            $table->integer('status')->default(0);
             $table->text('note')->nullable();
             $table->integer('active')->default(1);
             $table->string('response_letter')->nullable();
-            $table->text('purpose')->nullable();
             $table->timestamps();
 
-            $table->foreign('agencies_id')->references('id')->on('internship_agencies');
+            $table->foreign('company_id')->references('id')->on('internship_companies');
         });
     }
 

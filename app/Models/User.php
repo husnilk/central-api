@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,6 +33,21 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     public function logins()
     {
         return $this->hasMany(UserLogin::class, 'user_id', 'id');
@@ -42,13 +58,10 @@ class User extends Authenticatable implements JWTSubject
         switch ($this->type) {
             case self::STUDENT:
                 return $this->hasOne(Student::class, 'id');
-                break;
             case self::LECTURER:
                 return $this->hasOne(Lecturer::class, 'id');
-                break;
             case self::STAFF:
                 return $this->hasOne(Staff::class, 'id');
-                break;
         }
         return null;
     }
