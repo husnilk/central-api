@@ -32,7 +32,7 @@ class Student extends Model
 
     protected $table = 'students';
     protected $guarded = [];
-    protected $dates = ['birthday'];
+    protected $casts = ['birthday'];
     public $incrementing = false;
 
     /** Relationship */
